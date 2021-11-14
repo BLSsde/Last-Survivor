@@ -5,15 +5,21 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     public float fireRate = 0;
-    public float Damage = 10f;
+    public int Damage = 10;
     public LayerMask whatToHit;
     private float timeToFire = 0f;
     private Transform firePoint;
 
     // for Bullet Trail effect
     public Transform bulletTrailPrefab;
+    public Transform hitPrefab;
     private float timeToSpawnEffect = 0;
     [SerializeField] private float effectSpawnRate = 5f;
+
+    // Shake the camera when we fire with the Powerful Gun
+    [SerializeField] private float camShakeAmnt = 0.05f;
+    [SerializeField] private float camShakeLength = 0.1f;
+    private CameraShake camShake;
 
     // for Muzzle Flash
     public Transform muzzleFlashPrefab;
@@ -25,6 +31,13 @@ public class Weapon : MonoBehaviour
         {
             Debug.LogError("No firePoint Available !");
         }
+    }
+
+    private void Start()
+    {
+        camShake = GameManager.gameManager.GetComponent<CameraShake>();
+        if (camShake == null)
+            Debug.LogError("No CameraShake script found on GameManager object!");
     }
 
     void Update()
@@ -53,23 +66,59 @@ public class Weapon : MonoBehaviour
         Vector2 firePointPosition = new Vector2(firePoint.position.x, firePoint.position.y);
         RaycastHit2D hit = Physics2D.Raycast(firePointPosition, mousePosition - firePointPosition, 100, whatToHit);
 
-        if(Time.time >= timeToSpawnEffect)
-        {
-            Effect();
-            timeToSpawnEffect = Time.time + 1 / effectSpawnRate;
-        }
-        //Effect();   // Call the bullet trail effect fn.
+        
         Debug.DrawLine(firePointPosition, (mousePosition - firePointPosition)* 100, Color.cyan);
+
         if(hit.collider != null)
         {
             Debug.DrawLine(firePointPosition, hit.point, Color.red);
-            Debug.Log("We hit " + hit.collider.name + " and did " + Damage + " damage !");
+            Enemy enemy = hit.collider.GetComponent<Enemy>();
+            if(enemy != null)
+            {
+                enemy.DamageEnemy(Damage);
+                Debug.Log("We hit " + hit.collider.name + " and did " + Damage + " damage !");
+            }
+        }
+
+        if (Time.time >= timeToSpawnEffect)
+        {
+            Vector3 hitPoss;
+            Vector3 hitNormal;   // the Normal(N) of the line
+
+            if (hit.collider == null)
+            {
+                hitPoss = (mousePosition - firePointPosition) * 30;
+                hitNormal = new Vector3(9999, 9999, 9999);
+            }
+            else
+            {
+                hitPoss = hit.point;           //hit.point return vector3 position of hit point
+                hitNormal = hit.normal;
+            }
+
+            Effect(hitPoss, hitNormal);
+            timeToSpawnEffect = Time.time + 1 / effectSpawnRate;
         }
     }
 
-    private void Effect()
+    private void Effect(Vector3 hitPoss, Vector3 hitNormal)
     {
-        Instantiate(bulletTrailPrefab, firePoint.position, firePoint.rotation); // instantiating bullet trail effect
+        Transform trail = Instantiate(bulletTrailPrefab, firePoint.position, firePoint.rotation) as Transform; // instantiating bullet trail effect
+        LineRenderer lr = trail.GetComponent<LineRenderer>();
+
+        if(lr != null)
+        {
+            lr.SetPosition(0, firePoint.position);  //seting the position of lineRenderer
+            lr.SetPosition(1, hitPoss);
+        }
+
+        Destroy(trail.gameObject, 0.03f);
+
+        if(hitNormal != new Vector3(9999,9999,9999))
+        {
+            Transform hitParticle = Instantiate(hitPrefab, hitPoss, Quaternion.FromToRotation(Vector3.right, hitNormal));
+            Destroy(hitParticle.gameObject, 1f);
+        }
 
         // Instantiating muzzleFlash Effect
         Transform cloneOfMuzzleFlash = Instantiate(muzzleFlashPrefab, firePoint.position, firePoint.rotation) as Transform;
@@ -77,5 +126,8 @@ public class Weapon : MonoBehaviour
         float size = Random.Range(0.6f, 0.9f);
         cloneOfMuzzleFlash.localScale = new Vector3(size, size, size);
         Destroy(cloneOfMuzzleFlash.gameObject , 0.02f);
+
+        // Shake the Camera
+        camShake.Shake(camShakeAmnt, camShakeLength);
     }
 }

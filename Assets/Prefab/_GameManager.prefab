@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1279147762856717410}
   - component: {fileID: 1279147762856717421}
   - component: {fileID: 978182575305900781}
+  - component: {fileID: 1026111242056190374}
   m_Layer: 0
   m_Name: _GameManager
   m_TagString: GameMaster
