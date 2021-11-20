@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1279147762856717421}
   - component: {fileID: 978182575305900781}
   - component: {fileID: 1026111242056190374}
+  - component: {fileID: 2832539223554335341}
   m_Layer: 0
   m_Name: _GameManager
   m_TagString: GameMaster
@@ -50,6 +51,7 @@ MonoBehaviour:
   spawnPoint: {fileID: 8119217293993559492}
   spawnDelay: 2
   spawnPrefab: {fileID: 326370579200142832, guid: d37358fb95667bc4cb3c54ff69862673, type: 3}
+  cameraShake: {fileID: 1026111242056190374}
 --- !u!82 &978182575305900781
 AudioSource:
   m_ObjectHideFlags: 0
@@ -146,6 +148,49 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1026111242056190374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1279147762856717420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64a2107b5ecbff74bbaf98073707cd50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
+--- !u!114 &2832539223554335341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1279147762856717420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e089d95e3ff7134cb3049e5c0e85445, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waves:
+  - name: Alien Invation
+    enemy: {fileID: 7739044025065551147, guid: 045142f2a85908b4f8a34f6561331a4f, type: 3}
+    count: 2
+    rate: 1
+  - name: Alien Invation 2.0
+    enemy: {fileID: 7739044025065551147, guid: 045142f2a85908b4f8a34f6561331a4f, type: 3}
+    count: 3
+    rate: 1.5
+  - name: Alien Invation 3.0
+    enemy: {fileID: 7739044025065551147, guid: 045142f2a85908b4f8a34f6561331a4f, type: 3}
+    count: 5
+    rate: 2
+  spawnPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  timeBetweenWaves: 5
 --- !u!1 &7956389688796768664
 GameObject:
   m_ObjectHideFlags: 0
@@ -156,7 +201,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8119217293993559492}
   m_Layer: 0
-  m_Name: SpawnPoint
+  m_Name: _PlayerSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0

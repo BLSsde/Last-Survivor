@@ -6,6 +6,7 @@ TagManager:
   tags:
   - GameMaster
   - Ground_T
+  - Enemy
   layers:
   - Default
   - TransparentFX
