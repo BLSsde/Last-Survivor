@@ -4,6 +4,12 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager gameManager;
+    [SerializeField] private int maxLives = 3;
+    private static int remainingLives;
+    public static int Remaining_Lives
+    {
+        get { return remainingLives; }
+    }
 
     public Transform playerPrefab;
     public Transform spawnPoint;
@@ -11,6 +17,10 @@ public class GameManager : MonoBehaviour
     public GameObject spawnPrefab;
 
     public CameraShake cameraShake;
+    [SerializeField] private GameObject gameOverDisplay;
+
+    // reference to audioManager
+    private AudioManager audioManager;
 
     private void Awake()
     {
@@ -22,15 +32,28 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
+        remainingLives = maxLives;
         if(cameraShake == null)
         {
             Debug.LogError("No camera shake referenced in GameManager ");
         }
+
+        audioManager = AudioManager.instance;
+        if(audioManager == null)
+        {
+            Debug.LogError("No AudioManager in the scene");
+        }
+    }
+
+    public void EndGame()
+    {
+        gameOverDisplay.SetActive(true);
+
     }
 
     public IEnumerator _RespawnPlayer()
     {
-        GetComponent<AudioSource>().Play();
+        audioManager.PlaySound("Respawn");  // give the currect name of sound
         yield return new WaitForSeconds(spawnDelay);
 
         Instantiate(playerPrefab, spawnPoint.position, spawnPoint.rotation);
@@ -41,7 +64,15 @@ public class GameManager : MonoBehaviour
     public static void KillPlayer(Player player )
     {
         Destroy(player.gameObject);
-        gameManager.StartCoroutine(gameManager._RespawnPlayer());
+        remainingLives -= 1;
+        if(remainingLives <= 0)
+        {
+            gameManager.EndGame();
+        }
+        else
+        {
+            gameManager.StartCoroutine(gameManager._RespawnPlayer());
+        }
     }
     
     public static void KillEnemy(Enemy enemy )
