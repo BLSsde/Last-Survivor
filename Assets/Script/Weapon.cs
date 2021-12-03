@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    
     public float fireRate = 0;
     public int Damage = 10;
     public LayerMask whatToHit;
@@ -38,6 +39,7 @@ public class Weapon : MonoBehaviour
         camShake = GameManager.gameManager.GetComponent<CameraShake>();
         if (camShake == null)
             Debug.LogError("No CameraShake script found on GameManager object!");
+
     }
 
     void Update()
@@ -72,7 +74,7 @@ public class Weapon : MonoBehaviour
         if(hit.collider != null)
         {
             Debug.DrawLine(firePointPosition, hit.point, Color.red);
-            Enemy enemy = hit.collider.GetComponent<Enemy>();
+            EnemyScript enemy = hit.collider.GetComponent<EnemyScript>();
             if(enemy != null)
             {
                 enemy.DamageEnemy(Damage);

@@ -75,13 +75,13 @@ public class GameManager : MonoBehaviour
         }
     }
     
-    public static void KillEnemy(Enemy enemy )
+    public static void KillEnemy(EnemyScript enemy )
     {
         gameManager._KillEnemy(enemy);
         
     }
     // local KillEnemy Method
-    public void _KillEnemy(Enemy _enemy)
+    public void _KillEnemy(EnemyScript _enemy)
     {
         GameObject _clone = Instantiate(_enemy.enemyDeathParticles, _enemy.transform.position, Quaternion.identity) as GameObject;
         Destroy(_clone, 5f);

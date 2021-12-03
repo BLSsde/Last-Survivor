@@ -66,7 +66,7 @@ namespace UnityStandardAssets._2D
                 // If the character has a ceiling preventing them from standing up, keep them crouching
                 if (Physics2D.OverlapCircle(m_CeilingCheck.position, k_CeilingRadius, m_WhatIsGround))
                 {
-                    crouch = true;
+                    crouch = true; 
                 }
             }
 
@@ -115,9 +115,11 @@ namespace UnityStandardAssets._2D
             m_FacingRight = !m_FacingRight;
 
             // Multiply the player's x local scale by -1.
-            Vector3 theScale = playerGraphics.localScale;
+            /*Vector3 theScale = playerGraphics.localScale;
             theScale.x *= -1;
             playerGraphics.localScale = theScale;
+            */
+            playerGraphics.Rotate(0f, 180f, 0f);
         }
     }
 }
