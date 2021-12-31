@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 [System.Serializable]
@@ -23,6 +22,10 @@ public class Sound
         source = _source;
         source.clip = clip;
     }
+    public AudioSource GetSource
+    {
+        get { return source; }
+    }
 
     public void _Play()
     {
@@ -30,6 +33,11 @@ public class Sound
         source.pitch = pitch * (1 + Random.Range(-randomPitch / 2f, randomPitch / 2f));
         source.Play();
     }
+    public void _PauseSound()
+    {
+        source.Pause();
+    }
+   
 }
 
 // Main Class start from here
@@ -37,16 +45,16 @@ public class AudioManager : MonoBehaviour
 {
     [SerializeField] private Sound[] sounds;
     public static AudioManager instance;
-
+    
     private void Awake()
     {
-        if(instance != null)
+        if(instance == null)
         {
-            Debug.LogError("More than one AudioManager in the scene");
+            instance = this;
         }
         else
         {
-            instance = this;
+            Destroy(this);
         }
     }
 
@@ -57,6 +65,10 @@ public class AudioManager : MonoBehaviour
             GameObject go = new GameObject("Sound_" + i + "_" + sounds[i].name);
             go.transform.SetParent(this.transform);
             sounds[i].SetSource(go.AddComponent<AudioSource>());
+            if(sounds[i].name == "MainMenu" || sounds[i].name == "GameplayMusic")
+            {
+                go.GetComponent<AudioSource>().loop = true;
+            }
         }
     }
 
@@ -71,7 +83,17 @@ public class AudioManager : MonoBehaviour
             }
         }
 
-        // no sound with _name
-        Debug.LogWarning("AudioManager Sound not found in the list, " + _name);
+    }
+
+    public void SoundPause(string _name)
+    {
+       for(int i =0; i<sounds.Length; i++)
+        {
+            if(sounds[i].name == _name)
+            {
+                sounds[i]._PauseSound();
+                return;
+            }
+        }
     }
 }

@@ -1,51 +1,39 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
+using Cinemachine;
 
 public class CameraShake : MonoBehaviour
 {
-    [SerializeField]private Camera mainCamera;
-    private float shakeAmount = 0;
+    public static CameraShake Instance { get; private set; }
+    private CinemachineVirtualCamera VCam;
+    private float shakeTimer;
 
     private void Awake()
     {
-        if (mainCamera == null)
-            mainCamera = Camera.main;
+        Instance = this;
+        VCam = GetComponent<CinemachineVirtualCamera>();
 
     }
 
+    
+    public void ShakeCamera(float intensity, float time)
+    {
+        CinemachineBasicMultiChannelPerlin cmMultiCP = VCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        cmMultiCP.m_AmplitudeGain = intensity;
+        shakeTimer = time;
+    }
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.T))
+        if (shakeTimer > 0)
         {
-            Shake(0.1f, 0.2f);
-        }
-    }
-    public void Shake(float amnt, float length)
-    {
-        shakeAmount = amnt;
-        InvokeRepeating("BeginShake", 0, 0.01f);
-        Invoke("StopShake", length);
-    }
-
-    private void BeginShake()
-    {
-        if(shakeAmount > 0)
-        {
-            Vector3 camPos = mainCamera.transform.position;
-
-            float offsetX = Random.value * shakeAmount * 2 - shakeAmount;
-            float offsetY = Random.value * shakeAmount * 2 - shakeAmount;
-            camPos.x += offsetX;
-            camPos.y += offsetY;
-
-            mainCamera.transform.position = camPos;
+            shakeTimer -= Time.deltaTime;
+            if(shakeTimer <=0f)
+            {
+                // Time Over
+                CinemachineBasicMultiChannelPerlin cmMultiCP = VCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+                cmMultiCP.m_AmplitudeGain = 0f;
+            }
         }
     }
 
-    private void StopShake()
-    {
-        CancelInvoke("BeginShake");
-        mainCamera.transform.localPosition = Vector3.zero;
-    }
 }

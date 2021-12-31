@@ -1,0 +1,137 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4613762100925431819
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4613762100925431829}
+  - component: {fileID: 4613762100925431828}
+  - component: {fileID: 4613762100925431830}
+  m_Layer: 0
+  m_Name: _SaveGameData
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4613762100925431829
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4613762100925431819}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4613762100925431828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4613762100925431819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d39cf41a14c16f9439fd474e94dd662b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentAvatar: 0
+  currentMap: 0
+  coins: 0
+  finishes: 0
+  currentLevel: 1
+  avatarUnlocked: 0100000000
+--- !u!114 &4613762100925431830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4613762100925431819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6934116d776bc084e9d29cc209dbc145, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Respawning
+    clip: {fileID: 8300000, guid: 9271c721bdb50c74d81a0259a17b9058, type: 3}
+    volume: 0.7
+    pitch: 1
+    randomVolume: 0.1
+    randomPitch: 0.1
+  - name: Bonus
+    clip: {fileID: 8300000, guid: 76650a50efab79d49822832a5c7a66db, type: 3}
+    volume: 0.7
+    pitch: 1
+    randomVolume: 0.1
+    randomPitch: 0.1
+  - name: ButtonHover
+    clip: {fileID: 8300000, guid: 0d54947dbc3905040b1c4a03d0e72cfd, type: 3}
+    volume: 0.3
+    pitch: 1
+    randomVolume: 0.1
+    randomPitch: 0.1
+  - name: ButtonPress
+    clip: {fileID: 8300000, guid: 33cd906cce537b84fb6f418ac431c705, type: 3}
+    volume: 0.4
+    pitch: 1
+    randomVolume: 0.1
+    randomPitch: 0.1
+  - name: Click
+    clip: {fileID: 8300000, guid: 82dfb7c08dab37e499b8eb10edd8ff84, type: 3}
+    volume: 0.4
+    pitch: 1
+    randomVolume: 0.1
+    randomPitch: 0.1
+  - name: GameOver
+    clip: {fileID: 8300000, guid: 58edcf3debd211143b300c1525105352, type: 3}
+    volume: 0.7
+    pitch: 1
+    randomVolume: 0.1
+    randomPitch: 0.1
+  - name: Shot
+    clip: {fileID: 8300000, guid: 779a15acca632c7488019a531864bec8, type: 3}
+    volume: 0.5
+    pitch: 1
+    randomVolume: 0.1
+    randomPitch: 0.1
+  - name: Hit
+    clip: {fileID: 8300000, guid: 35796e9a38b8c784aabc400cebf3142a, type: 3}
+    volume: 0.7
+    pitch: 1
+    randomVolume: 0.1
+    randomPitch: 0.1
+  - name: Damage
+    clip: {fileID: 8300000, guid: c1e29416498e4cf479408d0b0e41b413, type: 3}
+    volume: 0.7
+    pitch: 1
+    randomVolume: 0.1
+    randomPitch: 0.1
+  - name: GameplayMusic
+    clip: {fileID: 8300000, guid: 5383cf6669d4d04488f38c3d0f9a27ae, type: 3}
+    volume: 0.7
+    pitch: 1
+    randomVolume: 0.1
+    randomPitch: 0.1
+  - name: MainMenu
+    clip: {fileID: 8300000, guid: b4d40e356afbe5745a3abb52a2c13da3, type: 3}
+    volume: 0.7
+    pitch: 1
+    randomVolume: 0.1
+    randomPitch: 0.1
+  - name: LoadingMusic
+    clip: {fileID: 8300000, guid: 1256bc18c82fe6f4cafbafac2360617c, type: 3}
+    volume: 0.7
+    pitch: 1
+    randomVolume: 0.1
+    randomPitch: 0.1

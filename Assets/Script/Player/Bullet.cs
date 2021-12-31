@@ -1,35 +1,37 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public Rigidbody2D rb;
-    [SerializeField] private float speed = 20f;
-    [SerializeField] private int damageToEnemy = 10;
-   
-
-    // hit effect
-    public GameObject impactEffect;
     
-    private void Start()
-    {
-        rb.velocity = transform.right * speed;
-    }
+    [SerializeField] private int damageToEnemy;
+    // hit effect
+    [SerializeField] private GameObject impactEffect;
+    [SerializeField] private GameObject enemyHitEffect;
 
     private void OnTriggerEnter2D(Collider2D hitInfo)
     {
-        if ( hitInfo.gameObject.tag == "Enemy"  )
+        
+        if (hitInfo.gameObject.CompareTag("Enemy"))
         {
             EnemyScript enemy = hitInfo.GetComponent<EnemyScript>();
             if (enemy != null)
             {
                 enemy.DamageEnemy(damageToEnemy);
+                
             }
-           GameObject impactNew = Instantiate(impactEffect, transform.position, transform.rotation);
-            Destroy(impactNew.gameObject, 1f);
+
+            GameObject hitNew = Instantiate(enemyHitEffect, transform.position, transform.rotation);
+            Destroy(hitNew, 0.5f);
         }
-        
+        if (hitInfo.gameObject.CompareTag("Obstacles"))
+        {
+            
+            GameObject impactNew = Instantiate(impactEffect, transform.position, transform.rotation);
+            Destroy(impactNew, 0.5f);
+        }
+
         Destroy(gameObject);
     }
+
 }

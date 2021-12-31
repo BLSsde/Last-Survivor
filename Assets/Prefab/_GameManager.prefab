@@ -10,14 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 1279147762856717410}
   - component: {fileID: 1279147762856717421}
-  - component: {fileID: 1026111242056190374}
-  - component: {fileID: 9008258601526496044}
+  - component: {fileID: 1780256557}
   m_Layer: 0
   m_Name: _GameManager
   m_TagString: GameMaster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1279147762856717410
 Transform:
@@ -46,14 +45,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ada6133e49b45c4bbedc7d122bae4e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLives: 3
-  playerPrefab: {fileID: 4362390764482405158, guid: c9990798d634d7d45b220212d9a8a60f, type: 3}
-  spawnPoint: {fileID: 8119217293993559492}
-  spawnDelay: 2
-  spawnPrefab: {fileID: 326370579200142832, guid: d37358fb95667bc4cb3c54ff69862673, type: 3}
-  cameraShake: {fileID: 1026111242056190374}
+  statusIndicator: {fileID: 0}
   gameOverDisplay: {fileID: 0}
---- !u!114 &1026111242056190374
+  gameWinDisplay: {fileID: 0}
+  playerInfoDisplay: {fileID: 0}
+  maxLives: 2
+  FinishesShowTxt:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  playerPrefab: {fileID: 9068223608506647520, guid: 6811f3719635d3547962bfb47d4cc5b4, type: 3}
+  spawnPoint: {fileID: 8119217293993559492}
+  spawnDelay: 3
+  spawnPrefab: {fileID: 326370579200142832, guid: d37358fb95667bc4cb3c54ff69862673, type: 3}
+--- !u!114 &1780256557
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -62,29 +67,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 1279147762856717420}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64a2107b5ecbff74bbaf98073707cd50, type: 3}
+  m_Script: {fileID: 11500000, guid: 43e5bd405435a414ab3cb1afefa29392, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 0}
---- !u!114 &9008258601526496044
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1279147762856717420}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6934116d776bc084e9d29cc209dbc145, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sounds:
-  - name: Respawn
-    clip: {fileID: 8300000, guid: 9271c721bdb50c74d81a0259a17b9058, type: 3}
-    volume: 0.7
-    pitch: 1
-    randomVolume: 0.1
-    randomPitch: 0.1
+  WaitingTimeBWEnemy: 0.2
+  maxWaves: 4
+  spawnPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  timeBetweenWaves: 4
 --- !u!1 &7956389688796768664
 GameObject:
   m_ObjectHideFlags: 0
@@ -99,7 +107,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &8119217293993559492
 Transform:
@@ -109,7 +117,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7956389688796768664}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.49, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1279147762856717410}

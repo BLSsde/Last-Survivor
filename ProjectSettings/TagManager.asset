@@ -6,6 +6,11 @@ TagManager:
   tags:
   - GameMaster
   - Enemy
+  - Daimonds
+  - Coins
+  - SpawnPoint
+  - Rooms
+  - Obstacles
   layers:
   - Default
   - TransparentFX
@@ -14,8 +19,8 @@ TagManager:
   - Water
   - UI
   - Ground
-  - 
-  - 
+  - Room
+  - Obstacles
   - 
   - 
   - 

@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class EnemyScript : MonoBehaviour
@@ -40,19 +39,16 @@ public class EnemyScript : MonoBehaviour
             statusIndicator.SetHealth(_enemyStats.currHealth, _enemyStats.maxHealth);
         }
 
-        if (enemyDeathParticles == null)
-        {
-            Debug.LogError("No death particles ");
-        }
-
     }
 
     public void DamageEnemy(int damage)
     {
         _enemyStats.currHealth -= damage;
+       
+
         if (_enemyStats.currHealth <= 0)
         {
-            GameManager.KillEnemy(this);
+           GameManager.instance.KillEnemy(this);
         }
 
         if (statusIndicator != null)
