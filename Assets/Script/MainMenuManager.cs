@@ -27,6 +27,10 @@ public class MainMenuManager : MonoBehaviour
         SceneManager.LoadScene(_index);
         AudioManager.instance.PlaySound("Click");
     }
+    public void QuiteGame()
+    {
+        Application.Quit();
+    }
 
     public void InformationBtn()
     {

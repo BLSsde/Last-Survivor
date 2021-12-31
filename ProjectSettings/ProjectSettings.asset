@@ -16,7 +16,7 @@ PlayerSettings:
   productName: Last Survivor
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
-  m_SplashScreenBackgroundColor: {r: 0.17702028, g: 0.24118744, b: 0.3207547, a: 0.85882354}
+  m_SplashScreenBackgroundColor: {r: 0.07662871, g: 0.10210425, b: 0.13207549, a: 0.85882354}
   m_ShowUnitySplashScreen: 1
   m_ShowUnitySplashLogo: 1
   m_SplashScreenOverlayOpacity: 1
@@ -41,7 +41,7 @@ PlayerSettings:
     height: 1
   m_SplashScreenLogos:
   - logo: {fileID: 21300000, guid: aaf6ff247b6128f408a6f4b419815c16, type: 3}
-    duration: 2.5
+    duration: 2
   m_VirtualRealitySplashScreen: {fileID: 2800000, guid: a78242d8f35d0914e8eb53c1ea0d455b, type: 3}
   m_HolographicTrackingLossScreen: {fileID: 0}
   defaultScreenWidth: 1920
