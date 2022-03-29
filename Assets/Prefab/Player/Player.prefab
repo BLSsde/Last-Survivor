@@ -205,8 +205,10 @@ MonoBehaviour:
   _playerStats:
     maxHealth: 100
   fallBoundary: -20
+  healthIncrementor: 25
   statusIndicator: {fileID: 9068223608311293446}
   CoinDestroyParticle: {fileID: 4091089915726857348, guid: a8ebc3aa16a8da742bbe8c84f68a488a, type: 3}
+  HealthDestroyParticle: {fileID: 4091089915726857348, guid: c27b9d2880403944d89fefd94d8a51cf, type: 3}
   coinsInPlayerInfo: {fileID: 0}
   CoinShowTxt:
   - {fileID: 0}

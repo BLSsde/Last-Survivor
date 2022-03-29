@@ -910,6 +910,9 @@ MonoBehaviour:
   - tag: Enemy4
     prefab: {fileID: 3600221687714417777, guid: 8be7fb5e5c338f343b06b6ed84b2131c, type: 3}
     size: 15
+  - tag: Health
+    prefab: {fileID: 4787221443648975374, guid: 6b9b2c47c9465404c81343df0c8c1f6d, type: 3}
+    size: 25
 --- !u!4 &59586247
 Transform:
   m_ObjectHideFlags: 0
@@ -5461,6 +5464,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 755873512}
   m_CullTransparentMesh: 1
+--- !u!114 &767568739 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9068223608506647527, guid: 6811f3719635d3547962bfb47d4cc5b4, type: 3}
+  m_PrefabInstance: {fileID: 887068039}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 658f6418f6cc24249874bf01ec8f8d91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &775043661
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11686,7 +11700,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1551345569
 Transform:
   m_ObjectHideFlags: 0
@@ -17135,6 +17149,10 @@ PrefabInstance:
       propertyPath: playerInfoDisplay
       value: 
       objectReference: {fileID: 2069068485}
+    - target: {fileID: 1279147762856717421, guid: 4727f3735cd1d924c88a0e536ededeac, type: 3}
+      propertyPath: playerShootingRef
+      value: 
+      objectReference: {fileID: 767568739}
     - target: {fileID: 1279147762856717421, guid: 4727f3735cd1d924c88a0e536ededeac, type: 3}
       propertyPath: FinishesShowTxt.Array.data[0]
       value: 

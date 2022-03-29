@@ -90,4 +90,5 @@ public class AvatarSelection : MonoBehaviour
         SceneManager.LoadScene(_index);
         AudioManager.instance.PlaySound("Click");
     }
+
 }

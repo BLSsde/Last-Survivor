@@ -58,6 +58,9 @@ MonoBehaviour:
   spawnPoint: {fileID: 8119217293993559492}
   spawnDelay: 3
   spawnPrefab: {fileID: 326370579200142832, guid: d37358fb95667bc4cb3c54ff69862673, type: 3}
+  percentage: 0700000003000000
+  total: 10
+  randomNumber: 0
 --- !u!114 &1780256557
 MonoBehaviour:
   m_ObjectHideFlags: 0

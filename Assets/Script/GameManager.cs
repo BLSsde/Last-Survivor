@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private PlayerShooting playerShootingRef;
+
     public static GameManager instance;
     private SaveGameData saveGameData;
     private Player player;
@@ -21,7 +23,6 @@ public class GameManager : MonoBehaviour
 
     //Texts
     [SerializeField] private Text[] FinishesShowTxt;
-    
 
     // Spawning Player
     public Transform playerPrefab;
@@ -30,6 +31,11 @@ public class GameManager : MonoBehaviour
     public GameObject spawnPrefab;
 
     private int enemyKillCount;
+
+    //  ---------------------------############
+    public int[] percentage = { 7, 3 };  // 7 for coins and 3 for health
+    public int total = 10;
+    public int randomNumber;
 
     public static int Remaining_Lives
     {
@@ -48,6 +54,8 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
+        playerShootingRef.enabled = true;
+
         player = Player.Instance;
         audioManager = AudioManager.instance;
         saveGameData = SaveGameData.instance;
@@ -77,6 +85,8 @@ public class GameManager : MonoBehaviour
     }
     public void GameWin()
     {
+        playerShootingRef.enabled = false; //disable the shooting script
+
         gameOverDisplay.SetActive(false);
         playerInfoDisplay.SetActive(false);
         gameWinDisplay.SetActive(true);
@@ -127,8 +137,6 @@ public class GameManager : MonoBehaviour
 
     }
 
-
-    
     public void KillEnemy(EnemyScript _enemy)
     {
 
@@ -139,13 +147,6 @@ public class GameManager : MonoBehaviour
         //Destroy(_enemy.gameObject);
         _enemy.gameObject.SetActive(false);
 
-        // Spawn Coins
-        int numberToSpawn = Random.Range(0, 4);
-        for(int i=0; i<=numberToSpawn; i++)
-        {
-            pooler.SpawnFromPool("Coins", _enemy.transform.position, Quaternion.identity);
-        }
-
         // increase kill count by 1
         enemyKillCount++;
 
@@ -154,6 +155,41 @@ public class GameManager : MonoBehaviour
         {
             FinishesShowTxt[i].text = "FINISHES: " + enemyKillCount.ToString();
         }
+
+
+
+
+        //---- Spawn Coins and Health randomly
+
+        randomNumber = Random.Range(0, total);
+        for (int i = 0; i < percentage.Length; i++)
+        {
+            if (randomNumber <= percentage[i])
+            {
+                if (i == 0)
+                {
+                    // spawn coins
+
+                    pooler.SpawnFromPool("Coins", _enemy.transform.position, Quaternion.identity);
+                    return;
+
+                }
+                else if (i == 1)
+                {
+                    // spawn health
+
+                    pooler.SpawnFromPool("Health", _enemy.transform.position, Quaternion.identity);
+                    return;
+                }
+
+            }
+            else
+            {
+                randomNumber -= percentage[i];
+            }
+        }
+
+
     }
 
 }

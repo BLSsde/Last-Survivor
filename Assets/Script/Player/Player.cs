@@ -25,11 +25,13 @@ public class Player : MonoBehaviour
 
     public PlayerStats _playerStats = new PlayerStats();
     [SerializeField] private int fallBoundary = -20;
+    [SerializeField] private int healthIncrementor = 25;  // health increment value 
 
     [SerializeField] private StatusIndicator statusIndicator;
 
     //for daimond and coins
     [SerializeField] private GameObject CoinDestroyParticle;
+    [SerializeField] private GameObject HealthDestroyParticle;
     // UI Info
     
     private int coinsInAGame;
@@ -101,6 +103,22 @@ public class Player : MonoBehaviour
             GameObject _clone = Instantiate(CoinDestroyParticle, target.transform.position, Quaternion.identity) as GameObject;
             target.gameObject.SetActive(false); // disabling the coins object
             Destroy(_clone, 0.5f);
+            
+        }
+
+        if(target.CompareTag("Health"))
+        {
+            if(_playerStats.currHealth < 100)
+            {
+                _playerStats.currHealth += healthIncrementor;
+                AudioManager.instance.PlaySound("Bonus");
+                GameObject _cloneH = Instantiate(HealthDestroyParticle, target.transform.position, Quaternion.identity);
+                statusIndicator.SetHealth(_playerStats.currHealth, _playerStats.maxHealth);
+
+                target.gameObject.SetActive(false);
+                Destroy(_cloneH, 0.5f);
+
+            }
             
         }
         

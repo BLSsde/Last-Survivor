@@ -9,7 +9,7 @@ public class LivesCounter : MonoBehaviour
         livesText = GetComponent<Text>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         livesText.text = GameManager.Remaining_Lives.ToString();
     }
